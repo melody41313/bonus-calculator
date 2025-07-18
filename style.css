@@ -1,0 +1,96 @@
+:root {
+  --primary: #4F46E5;
+  --light: #F9FAFB;
+  --gray: #6B7280;
+  --font: 'Segoe UI', 'Noto Sans TC', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background-color: var(--light);
+  color: #111;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+h2 {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+label {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: var(--gray);
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #4338CA;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 15px;
+  min-width: 500px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #EEF2FF;
+}
+
+tfoot td {
+  font-weight: bold;
+  background-color: #F3F4F6;
+}
