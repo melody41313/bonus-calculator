@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>獎金分配試算</title>
+  <style>
+    body { font-family: sans-serif; background: #f8f8f8; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; background: #fff; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #eee; }
+    input { padding: 5px; width: 120px; }
+    .inputs { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h2>獎金分配試算器</h2>
+  <div class="inputs">
+    <label>總盈餘：<input type="number" id="totalProfit" value="10000000"></label>
+    <label>分配比例（%）：<input type="number" id="distributionRate" value="7" step="0.1"></label>
+    <button onclick="calculate()">試算</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>分配比例</th>
+        <th>分配金額（元）</th>
+      </tr>
+    </thead>
+    <tbody id="resultTable"></tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">合計</th>
+        <th id="totalAmount"></th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    const people = [
+      { name: "億", ratio: 0.20 },
+      { name: "庭", ratio: 0.10 },
+      { name: "青", ratio: 0.10 },
+      { name: "洪", ratio: 0.10 },
+      { name: "書", ratio: 0.08 },
+      { name: "麗", ratio: 0.08 },
+      { name: "惠", ratio: 0.08 },
+      { name: "靜", ratio: 0.04 },
+      { name: "福", ratio: 0.08 },
+      { name: "瓊", ratio: 0.08 },
+      { name: "華", ratio: 0.04 },
+      { name: "芳", ratio: 0.02 },
+    ];
+
+    function formatNumber(num) {
+      return num.toLocaleString("zh-Hant", { maximumFractionDigits: 0 });
+    }
+
+    function calculate() {
+      const profit = parseFloat(document.getElementById("totalProfit").value) || 0;
+      const distRate = parseFloat(document.getElementById("distributionRate").value) / 100 || 0;
+      const totalBonus = profit * distRate;
+
+      const tbody = document.getElementById("resultTable");
+      tbody.innerHTML = "";
+
+      let sum = 0;
+
+      people.forEach(p => {
+        const amount = Math.round(totalBonus * p.ratio);
+        sum += amount;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${p.name}</td>
+          <td>${(p.ratio * 100).toFixed(0)}%</td>
+          <td>${formatNumber(amount)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById("totalAmount").textContent = formatNumber(sum);
+    }
+
+    window.onload = calculate;
+  </script>
+</body>
+</html>
